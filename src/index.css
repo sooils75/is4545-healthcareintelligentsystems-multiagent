@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.011em;
+  }
+
+  /* Optical adjustment for dark mode */
+  .dark body {
+    letter-spacing: -0.005em;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-feature-settings: "tnum" 1, "zero" 1;
+  }
+}
+
+/* Blueprint dot-matrix pattern */
+.bg-blueprint-grid {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.25) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.dark .bg-blueprint-grid {
+  background-image: radial-gradient(rgba(71, 85, 105, 0.35) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Smooth ambient glows */
+.glow-teal-sm {
+  box-shadow: 0 0 25px -5px rgba(13, 148, 136, 0.2);
+}
+
+.glow-indigo-sm {
+  box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.2);
+}
+
+/* Dynamic arrow animations */
+@keyframes flowPulse {
+  0% {
+    stroke-dashoffset: 48;
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.6;
+  }
+}
+
+.animate-flow-dash {
+  animation: flowPulse 1.2s linear infinite;
+}
+
+.animate-flow-dash-reverse {
+  animation: flowPulse 1.2s linear infinite reverse;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(13, 148, 136, 0);
+  }
+}
+
+.agent-running-glow {
+  animation: pulseGlow 1.8s infinite;
+}
+
+@keyframes arrowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px currentColor);
+    stroke-width: 2.5;
+  }
+  50% {
+    filter: drop-shadow(0 0 8px currentColor);
+    stroke-width: 3.5;
+  }
+}
+
+.arrow-vivid-active {
+  animation: arrowPulse 1.6s ease-in-out infinite, flowPulse 1s linear infinite;
+}
